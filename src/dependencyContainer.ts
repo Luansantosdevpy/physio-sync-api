@@ -9,6 +9,9 @@ import CategoryService from './application/services/categoryService';
 import ClientRepositoryInterface from './domain/interfaces/repositories/clientRepositoryInterface';
 import ClientRepository from './infrastructure/data/repositories/clientRepository';
 import ClientService from './application/services/clientService';
+import SubcategoryRepositoryInterface from './domain/interfaces/repositories/subcategoryRepositoryInterface';
+import SubcategoryRepository from './infrastructure/data/repositories/subcategoryRepository';
+import SubcategoryService from './application/services/subcategoryService';
 
 export default async (container: DependencyContainer): Promise<void> => {
   Logger.debug('Dependency container initializing...');
@@ -44,6 +47,17 @@ export default async (container: DependencyContainer): Promise<void> => {
 
   container.register<ClientService>('ClientService', {
     useClass: ClientService
+  });
+
+  container.register<SubcategoryRepositoryInterface>(
+    'SubcategoryRepositoryInterface',
+    {
+      useClass: SubcategoryRepository
+    }
+  );
+
+  container.register<SubcategoryService>('SubcategoryService', {
+    useClass: SubcategoryService
   });
 
   Logger.debug('Dependency container initialized!');
