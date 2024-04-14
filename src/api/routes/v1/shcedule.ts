@@ -1,34 +1,35 @@
 import { Router } from 'express';
 import { container } from 'tsyringe';
-import SubcategoryController from '../../controllers/subcategoryController';
+import ScheduleController from '../../controllers/scheduleController';
 import { verificarToken } from '../../../application/middlewares/tokenMiddleware';
 
 export default async (): Promise<Router> => {
   const router = Router();
-  const subcategoryController = container.resolve(SubcategoryController);
+  const scheduleController = container.resolve(ScheduleController);
 
   router.post(
     '/create',
     verificarToken,
-    subcategoryController.create
+    scheduleController.create
   );
 
-  router.get('/', subcategoryController.findAll);
+  router.get('/', verificarToken, scheduleController.findAll);
   router.get(
     '/:id',
-    subcategoryController.findById
+    verificarToken,
+    scheduleController.findById
   );
 
   router.put(
     '/:id',
     verificarToken,
-    subcategoryController.update
+    scheduleController.update
   );
 
   router.delete(
     '/:id',
     verificarToken,
-    subcategoryController.delete
+    scheduleController.delete
   );
 
   return router;

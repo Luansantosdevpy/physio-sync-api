@@ -12,6 +12,12 @@ import ClientService from './application/services/clientService';
 import SubcategoryRepositoryInterface from './domain/interfaces/repositories/subcategoryRepositoryInterface';
 import SubcategoryRepository from './infrastructure/data/repositories/subcategoryRepository';
 import SubcategoryService from './application/services/subcategoryService';
+import ScheduleRepositoryInterface from './domain/interfaces/repositories/scheduleRepositoryInterface';
+import ScheduleRepository from './infrastructure/data/repositories/scheduleRepository';
+import ScheduleService from './application/services/scheduleService';
+import AuthRepositoryInterface from './domain/interfaces/repositories/authRepositoryInterface';
+import AuthRepository from './infrastructure/data/repositories/authRepository';
+import AuthService from './application/services/authService';
 
 export default async (container: DependencyContainer): Promise<void> => {
   Logger.debug('Dependency container initializing...');
@@ -58,6 +64,28 @@ export default async (container: DependencyContainer): Promise<void> => {
 
   container.register<SubcategoryService>('SubcategoryService', {
     useClass: SubcategoryService
+  });
+
+  container.register<ScheduleRepositoryInterface>(
+    'ScheduleRepositoryInterface',
+    {
+      useClass: ScheduleRepository
+    }
+  );
+
+  container.register<ScheduleService>('ScheduleService', {
+    useClass: ScheduleService
+  });
+
+  container.register<AuthRepositoryInterface>(
+    'AuthRepositoryInterface',
+    {
+      useClass: AuthRepository
+    }
+  );
+
+  container.register<AuthService>('AuthService', {
+    useClass: AuthService
   });
 
   Logger.debug('Dependency container initialized!');

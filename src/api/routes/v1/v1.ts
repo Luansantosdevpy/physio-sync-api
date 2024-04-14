@@ -4,6 +4,8 @@ import swagger from './swagger';
 import category from './category';
 import client from './client';
 import subcategory from './subcategory';
+import shcedule from './shcedule';
+import auth from './auth';
 
 export default async (): Promise<Router> => {
   const router = Router();
@@ -14,6 +16,8 @@ export default async (): Promise<Router> => {
   router.use('/client', await client());
   router.use('/', await healthCheck());
   router.use('/', await swagger());
+  router.use('/schedule', await shcedule());
+  router.use('/auth', await auth());
 
   return router;
 };

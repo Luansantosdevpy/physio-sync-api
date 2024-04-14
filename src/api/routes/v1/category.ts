@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { container } from 'tsyringe';
 import * as validations from '../../../application/validations/categoryControllerRequestValidations';
 import CategoryController from '../../controllers/categoryController';
+import { verificarToken } from '../../../application/middlewares/tokenMiddleware';
 
 export default async (): Promise<Router> => {
   const router = Router();
@@ -10,6 +11,7 @@ export default async (): Promise<Router> => {
   router.post(
     '/create',
     validations.createCategoryRequestValidation,
+    verificarToken,
     categoryController.create
   );
 
@@ -23,12 +25,14 @@ export default async (): Promise<Router> => {
   router.put(
     '/:id',
     validations.updateCategoryRequestValidations,
+    verificarToken,
     categoryController.update
   );
 
   router.delete(
     '/:id',
     validations.deleteCategoryRequestValidations,
+    verificarToken,
     categoryController.delete
   );
 
