@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { container } from 'tsyringe';
 import SubcategoryController from '../../controllers/subcategoryController';
+import { verificarToken } from '../../../application/middlewares/tokenMiddleware';
 
 export default async (): Promise<Router> => {
   const router = Router();
@@ -8,6 +9,7 @@ export default async (): Promise<Router> => {
 
   router.post(
     '/create',
+    verificarToken,
     subcategoryController.create
   );
 
@@ -19,11 +21,13 @@ export default async (): Promise<Router> => {
 
   router.put(
     '/:id',
+    verificarToken,
     subcategoryController.update
   );
 
   router.delete(
     '/:id',
+    verificarToken,
     subcategoryController.delete
   );
 
