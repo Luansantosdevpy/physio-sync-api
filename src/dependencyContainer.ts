@@ -15,6 +15,9 @@ import SubcategoryService from './application/services/subcategoryService';
 import ScheduleRepositoryInterface from './domain/interfaces/repositories/scheduleRepositoryInterface';
 import ScheduleRepository from './infrastructure/data/repositories/scheduleRepository';
 import ScheduleService from './application/services/scheduleService';
+import PhysioterapistRepositoryInterface from './domain/interfaces/repositories/physioterapistRepositoryInterface';
+import PhysioterapistRepository from './infrastructure/data/repositories/physioterapistRepository';
+import PhysioterapistService from './application/services/physioterapistService';
 
 export default async (container: DependencyContainer): Promise<void> => {
   Logger.debug('Dependency container initializing...');
@@ -72,6 +75,17 @@ export default async (container: DependencyContainer): Promise<void> => {
 
   container.register<ScheduleService>('ScheduleService', {
     useClass: ScheduleService
+  });
+
+  container.register<PhysioterapistRepositoryInterface>(
+    'PhysioterapistRepositoryInterface',
+    {
+      useClass: PhysioterapistRepository
+    }
+  );
+
+  container.register<PhysioterapistService>('PhysioterapistService', {
+    useClass: PhysioterapistService
   });
 
   Logger.debug('Dependency container initialized!');

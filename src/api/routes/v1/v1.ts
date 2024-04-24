@@ -5,6 +5,7 @@ import category from './category';
 import client from './client';
 import subcategory from './subcategory';
 import shcedule from './shcedule';
+import physio from './physio';
 
 export default async (): Promise<Router> => {
   const router = Router();
@@ -16,6 +17,7 @@ export default async (): Promise<Router> => {
   router.use('/', await healthCheck());
   router.use('/', await swagger());
   router.use('/schedule', await shcedule());
+  router.use('/physio', await physio());
 
   return router;
 };
