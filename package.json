@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "build": "tsc",
-    "dev": "yarn ts-node-dev --clear --inspect --transpile-only --ignore node_modules -r dotenv/config src/server.ts service:"
+    "dev": "yarn ts-node-dev --clear --inspect --transpile-only --ignore node_modules -r dotenv/config src/server.ts service:",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
